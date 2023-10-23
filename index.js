@@ -87,28 +87,38 @@ const titles = [
 //Array of authors and the book they wrote
 //"--- wrote --- in ---"
 books.forEach((book) => {
-  console.log(book.authorFirst, book.authorLast);
+  console.log(
+    `${book.authorFirst} ${book.authorLast} wrote "${book.name}" in ${book.publishDate}`
+  );
 });
 
-//Find who wrote War and Peace
+//Find who wrote "War and Peace"
+const warAndPeaceAuthor = books.find((book) => book.name === "War and Peace");
+console.log(
+  `"War and Peace" was written by ${warAndPeaceAuthor.authorFirst} ${warAndPeaceAuthor.authorLast}`
+);
 
 //how many books were written before 1900?
-const current4 = books.filter((book) => book.publishDate.includes(x > 1990));
-console.log(current4);
+const booksBefore1900 = books.filter((book) => book.publishDate < 1900);
+console.log(`Number of books written before 1900: ${booksBefore1900.length}`);
 
 //was there at least one book published within the last 100 years?
+const currentYear = new Date().getFullYear();
+const hasBookWithinLast100Years = books.some(
+  (book) => currentYear - book.publishDate <= 100
+);
+console.log(
+  `At least one book published within the last 100 years: ${hasBookWithinLast100Years}`
+);
 
 //was every book published within the last 100 years?
-function {
-  let x = publishDate.value;
-  if (x > 1923) {
-    console.log("No");
-  } else x < 1923;
-  {
-    console.log("Yes");
-  };
-};
+const allBooksWithinLast100Years = books.every(
+  (book) => currentYear - book.publishDate <= 100
+);
+console.log(
+  `Every book published within the last 100 years: ${allBooksWithinLast100Years}`
+);
 
 //print a list of books that "includes" the genre historical
-const current1 = books.filter((book) => book.genre.includes("historical"));
-console.log(current1);
+const historical = books.filter((book) => book.genre.includes("historical"));
+console.log(historical);
